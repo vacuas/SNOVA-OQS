@@ -1,6 +1,5 @@
 #include <stdio.h>
 
-#define NO_MT4B
 #include "../snova.h"
 #include "../test/util.h"
 #include "../nistkat/rng.h"

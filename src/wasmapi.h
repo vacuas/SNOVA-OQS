@@ -6,10 +6,6 @@
 #define CRYPTO_PUBLICKEYBYTES bytes_pk
 #define CRYPTO_BYTES (bytes_signature + bytes_salt)
 
-#ifndef CRYPTO_ALGNAME
-#define CRYPTO_ALGNAME "SNOVA_24_5_4"
-#endif
-
 #ifndef EM_PORT_API
 #    if defined(__EMSCRIPTEN__)
 #        include <emscripten.h>

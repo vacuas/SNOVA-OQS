@@ -11,7 +11,7 @@ implementations:
   - name: opt
     version: round2
     folder_name: .
-    compile_opts: -DOPTIMISATION=1 -DNIST_LEVEL=1 -Dv_SNOVA=24 -Do_SNOVA=5 -Dl_SNOVA=5 -Dsk_is_seed=1 -DPK_EXPAND_SHAKE=0 -DSNOVA_LIBOQS
+    compile_opts: -DOPTIMISATION=1 -Dv_SNOVA=24 -Do_SNOVA=5 -Dl_SNOVA=5 -Dsk_is_seed=1 -DPK_EXPAND_SHAKE=0 -DSNOVA_LIBOQS
     signature_keypair: _snova_24_5_5_aes_ssk_opt_keypair
     signature_signature: _snova_24_5_5_aes_ssk_opt_sign
     signature_verify: _snova_24_5_5_aes_ssk_opt_verify
@@ -21,7 +21,7 @@ implementations:
   - name: avx2
     version: round2
     folder_name: .
-    compile_opts: -DOPTIMISATION=2 -DNIST_LEVEL=1 -Dv_SNOVA=24 -Do_SNOVA=5 -Dl_SNOVA=5 -Dsk_is_seed=1 -DPK_EXPAND_SHAKE=0 -DSNOVA_LIBOQS
+    compile_opts: -DOPTIMISATION=2 -Dv_SNOVA=24 -Do_SNOVA=5 -Dl_SNOVA=5 -Dsk_is_seed=1 -DPK_EXPAND_SHAKE=0 -DSNOVA_LIBOQS
     signature_keypair: _snova_24_5_5_aes_ssk_avx2_keypair
     signature_signature: _snova_24_5_5_aes_ssk_avx2_sign
     signature_verify: _snova_24_5_5_aes_ssk_avx2_verify
@@ -36,7 +36,7 @@ implementations:
   - name: neon
     version: round2
     folder_name: .
-    compile_opts: -DOPTIMISATION=2 -DNIST_LEVEL=1 -Dv_SNOVA=24 -Do_SNOVA=5 -Dl_SNOVA=5 -Dsk_is_seed=1 -DPK_EXPAND_SHAKE=0 -DSNOVA_LIBOQS
+    compile_opts: -DOPTIMISATION=2 -Dv_SNOVA=24 -Do_SNOVA=5 -Dl_SNOVA=5 -Dsk_is_seed=1 -DPK_EXPAND_SHAKE=0 -DSNOVA_LIBOQS
     signature_keypair: _snova_24_5_5_aes_ssk_neon_keypair
     signature_signature: _snova_24_5_5_aes_ssk_neon_sign
     signature_verify: _snova_24_5_5_aes_ssk_neon_verify

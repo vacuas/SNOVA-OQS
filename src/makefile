@@ -85,7 +85,7 @@ STATICLIB = $(BUILD_LIBO_OUT_PATH)/libsnovasym.a
 LIBS = -L$(BUILD_LIBO_OUT_PATH) -lsnovasym
 
 CRYPTO_ALGNAME = SNOVA_$(SNOVA_V)_$(SNOVA_O)_$(SNOVA_L)$(PK_EXPAND)
-SNOVA_PARAMS = -D v_SNOVA=$(SNOVA_V) -D o_SNOVA=$(SNOVA_O) -D l_SNOVA=$(SNOVA_L) -D sk_is_seed=$(SK_IS_SEED) -D CRYPTO_ALGNAME=\"$(CRYPTO_ALGNAME)\" -D PK_EXPAND_SHAKE=$(PK_EXPAND_SHAKE)
+SNOVA_PARAMS = -D v_SNOVA=$(SNOVA_V) -D o_SNOVA=$(SNOVA_O) -D l_SNOVA=$(SNOVA_L) -D sk_is_seed=$(SK_IS_SEED) -D PK_EXPAND_SHAKE=$(PK_EXPAND_SHAKE)
 SNOVA_PARAMS += -D OPTIMISATION=$(OPTIMISATION)
 
 TEST_SPEED_N ?= 2048
@@ -181,12 +181,12 @@ test_api: init info build/sign.o $(OLIST) $(STATICLIB)
 	./test_api.a > test_api_$(CRYPTO_ALGNAME)_$(SK_TYPE)_OPT_$(OPTIMISATION).log
 
 test_speed: init info build/rng.o $(OLIST) $(STATICLIB)
-	$(CC) $(CFLAGS) $(SNOVA_PARAMS) -D TEST_SPEED_N=$(TEST_SPEED_N) $(OLIST) build/rng.o test_speed/test_speed.c -o test_speed.a $(LIBS)
+	$(CC) $(CFLAGS) $(SNOVA_PARAMS) -D TEST_SPEED_N=$(TEST_SPEED_N) -D CRYPTO_ALGNAME=\"$(CRYPTO_ALGNAME)\" $(OLIST) build/rng.o test_speed/test_speed.c -o test_speed.a $(LIBS)
 	./test_speed.a
 
 PQCgenKAT: init info build/sign.o $(OLIST) $(STATICLIB)
-	$(CC) $(CFLAGS) $(SNOVA_PARAMS) $(OLIST) build/rng.o build/sign.o nistkat/PQCgenKAT_sign.c -o PQCgenKAT.a $(LIBS)
+	$(CC) $(CFLAGS) $(SNOVA_PARAMS) -D CRYPTO_ALGNAME=\"$(CRYPTO_ALGNAME)\" $(OLIST) build/rng.o build/sign.o nistkat/PQCgenKAT_sign.c -o PQCgenKAT.a $(LIBS)
 	./PQCgenKAT.a
 
 build_wasmapi: init wasm info $(OLIST) $(STATICLIB)
-	$(CC) $(CFLAGS) $(SNOVA_PARAMS) $(OLIST) wasmapi.c -o $(WASM_OUT_PATH)$(CRYPTO_ALGNAME).$(WASM_OUT_EXT) -s WASM=1 -s EXPORTED_FUNCTIONS='["_malloc", "_free"]' -s SAFE_HEAP=1 -s TOTAL_STACK=16777216 -s ALLOW_MEMORY_GROWTH=1 $(LIBS) --no-entry
+	$(CC) $(CFLAGS) $(SNOVA_PARAMS) -D CRYPTO_ALGNAME=\"$(CRYPTO_ALGNAME)\" $(OLIST) wasmapi.c -o $(WASM_OUT_PATH)$(CRYPTO_ALGNAME).$(WASM_OUT_EXT) -s WASM=1 -s EXPORTED_FUNCTIONS='["_malloc", "_free"]' -s SAFE_HEAP=1 -s TOTAL_STACK=17825792 -s ALLOW_MEMORY_GROWTH=1 $(LIBS) --no-entry -s INITIAL_MEMORY=20971520

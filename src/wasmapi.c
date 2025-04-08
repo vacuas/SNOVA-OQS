@@ -85,7 +85,7 @@ EM_PORT_API(int) verify(const uint8_t *sm, const uint8_t *m, const size_t mlen, 
 }
 
 EM_PORT_API(void) expandPublicPack(uint8_t *pkx_pck, const uint8_t *pk) {
-	expand_public_pack(pkx_pck, *pk);
+	expand_public_pack(pkx_pck, pk);
 }
 
 EM_PORT_API(int) verifyPkx(const uint8_t *sm, const uint8_t *m, const size_t mlen, const uint8_t *pkx) {
