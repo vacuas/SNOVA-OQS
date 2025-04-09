@@ -8,29 +8,29 @@
 
 #if OPTIMISATION == 2
 #if __ARM_NEON
-#define OPT_NAME _neon
+#define OPT_NAME neon
 #else
-#define OPT_NAME _avx2
+#define OPT_NAME avx2
 #endif
 #elif OPTIMISATION == 1
-#define OPT_NAME _opt
+#define OPT_NAME opt
 #else
-#define OPT_NAME _ref
+#define OPT_NAME ref
 #endif
 
 #if PK_EXPAND_SHAKE
-#define PKX_NAME _shake
+#define PKX_NAME shake
 #else
-#define PKX_NAME _aes
+#define PKX_NAME aes
 #endif
 
 #if sk_is_seed
-#define ESK_NAME _ssk
+#define ESK_NAME ssk
 #else
-#define ESK_NAME _esk
+#define ESK_NAME esk
 #endif
 
-#define PARAM_JOIN_(o, p, s, a, b, c, f) _snova_##a##_##b##_##c####p####s####o##_##f
+#define PARAM_JOIN_(o, p, s, a, b, c, f) _snova_##a##_##b##_##c##_##p##_##s##_##o##_##f
 #define PARAM_JOIN(o, p, s, a, b, c, f) PARAM_JOIN_(o, p, s, a, b, c, f)
 #define SNOVA_NAMESPACE(f) PARAM_JOIN(OPT_NAME, PKX_NAME, ESK_NAME, v_SNOVA, o_SNOVA, l_SNOVA, f)
 
