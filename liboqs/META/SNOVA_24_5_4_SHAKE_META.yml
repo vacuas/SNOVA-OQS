@@ -6,7 +6,15 @@ length-secret-key: 48
 length-signature: 248
 nistkat-sha256: 40f943cbf34a57ebb3b5113f94c15c93a4e2d9b7deca02aef88a6ab2554da303
 principal-submitters:
-  - SNOVA team
+  - Lih-Chung Wang
+  - Chun-Yen Chou
+  - Jintai Ding
+  - Yen-Liang Kuan
+  - Jan Adriaan Leegwater
+  - Ming-Siou Li
+  - Bo-Shu Tseng
+  - Po-En Tseng
+  - Chia-Chun Wang
 implementations:
   - name: opt
     version: round2
