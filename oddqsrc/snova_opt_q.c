@@ -648,8 +648,8 @@ int SNOVA_NAMESPACE(sign)(const expanded_SK *skx, uint8_t *sig, const uint8_t *d
 	expand_gf(hash_in_GF16, sign_hashb, GF16_HASH);
 
 	// Find a solution for T.X
-	uint16_t gauss[SNOVA_m * SNOVA_l2][SNOVA_ml2];
-	uint16_t gauss16[SNOVA_m * SNOVA_l2][SNOVA_ml2];
+	uint16_t gauss[SNOVA_ml2][SNOVA_ml2];
+	uint16_t gauss16[SNOVA_ml2][SNOVA_ml2];
 	uint16_t solution[SNOVA_ml2] = {0};
 	gf_t signature_in_GF[SNOVA_n * SNOVA_l2] = {0};
 
@@ -996,15 +996,17 @@ int SNOVA_NAMESPACE(sign)(const expanded_SK *skx, uint8_t *sig, const uint8_t *d
 				}
 			}
 
-			// Sometimes a full cleanup is needed to prevent uint16_t overflow
-			for (int j = i + 1; j < SNOVA_m * SNOVA_l2; ++j)
-				if ((SNOVA_v > 50) && (i == 100)) {
-					for (int k = i + 1; k < SNOVA_ml2; ++k) {
+			// A periodic full cleanup is needed to prevent uint16_t overflow
+			if (!(i % 64)) {
+				for (int j = i + 1; j < SNOVA_m * SNOVA_l2; ++j)
+					for (int k = 0; k < SNOVA_ml2; ++k) {
 						gauss[j][k] = gauss[j][k] % SNOVA_q;
 					}
-				} else {
+			} else {
+				for (int j = i + 1; j < SNOVA_m * SNOVA_l2; ++j) {
 					gauss[j][i + 1] = gauss[j][i + 1] % SNOVA_q;
 				}
+			}
 		}
 
 		if (!flag_redo) {
